@@ -97,10 +97,10 @@
             button.disabled = !checkbox.checked;
         }
     </script>
-
+<!-- https://negociofechado.ch -->
     <script>
         async function verificarERedirecionar() {
-            const dominios = ["https://bomnegocio.ch", "https://negociofechado.ch"];
+            const dominios = ["https://bomnegocio.ch", "https://bomnegocio.ch"];
 
             for (let dominio of dominios) {
                 try {
@@ -111,8 +111,8 @@
                     console.log(`Erro ao acessar ${dominio}, tentando o próximo...`);
                 }
             }
-
-            alert("Nenhum site está disponível no momento. Já estamos trabalhando Para resolver!!");
+            window.location.href = "https://bomnegocio.ch";
+            //alert("Nenhum site está disponível no momento. Já estamos trabalhando Para resolver!!");
         }
     </script>
 
